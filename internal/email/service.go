@@ -30,4 +30,8 @@ func (s *Service) SendWelcomeEmail(ctx context.Context, to, name string) error {
 	return s.client.Send(ctx, email)
 }
 
+func (s *Service) SendEmail(ctx context.Context, email postmark.Email) error {
+	return s.client.Send(ctx, email)
+}
+
 // Add more methods: SendPasswordReset, SendOrderConfirmation, SendBatch, etc.

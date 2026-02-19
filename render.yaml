@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: mailer-api
+    runtime: go
+    plan: free
+    buildCommand: go mod download && go build -o bin/main cmd/sender/main.go
+    startCommand: ./bin/main
+    envVars:
+      - key: POSTMARK_SERVER_TOKEN
+        sync: false
+      - key: FROM_EMAIL
+        sync: false
+      - key: FROM_NAME
+        sync: false
+      - key: PORT
+        value: 10000
