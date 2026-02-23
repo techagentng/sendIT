@@ -14,3 +14,10 @@ services:
         sync: false
       - key: PORT
         value: 10000
+    buildFilter:
+      paths:
+        - go.mod
+        - go.sum
+        - cmd/**
+        - internal/**
+        - pkg/**
