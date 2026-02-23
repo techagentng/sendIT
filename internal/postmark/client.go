@@ -8,6 +8,7 @@ import (
 )
 
 type Email struct {
+	From        string
 	To          string
 	Subject     string
 	HTMLBody    string
@@ -42,8 +43,13 @@ func NewClient(serverToken, fromName, fromEmail string) *Client {
 }
 
 func (c *Client) Send(ctx context.Context, e Email) error {
+	from := e.From
+	if from == "" {
+		from = fmt.Sprintf("%s <%s>", c.fromName, c.fromEmail)
+	}
+
 	pmEmail := postmark.Email{
-		From:       fmt.Sprintf("%s <%s>", c.fromName, c.fromEmail),
+		From:       from,
 		To:         e.To,
 		Subject:    e.Subject,
 		HTMLBody:   e.HTMLBody,

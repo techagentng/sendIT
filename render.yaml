@@ -9,8 +9,10 @@ services:
       - key: POSTMARK_SERVER_TOKEN
         sync: false
       - key: FROM_EMAIL
+        value: your-verified-email@yourdomain.com
         sync: false
       - key: FROM_NAME
+        value: Your App Name
         sync: false
       - key: PORT
         value: 10000

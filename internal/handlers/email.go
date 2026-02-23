@@ -14,6 +14,7 @@ type EmailHandler struct {
 }
 
 type SendEmailRequest struct {
+	From     string `json:"from"`
 	To       string `json:"to" binding:"required,email"`
 	Subject  string `json:"subject" binding:"required"`
 	HTMLBody string `json:"html_body" binding:"required"`
@@ -46,6 +47,7 @@ func (h *EmailHandler) SendEmail(c *gin.Context) {
 	}
 
 	emailMsg := postmark.Email{
+		From:       req.From,
 		To:         req.To,
 		Subject:    req.Subject,
 		HTMLBody:   req.HTMLBody,
